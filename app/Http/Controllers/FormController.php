@@ -5,12 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Validator;
 
 class FormController extends Controller
 {
     public $error = 'error occured while posting data to server';
 
     public function form1(Request $request){
+        $validator = Validator::make($request->all(), [
+            'Email' => 'required',
+            'phoneNumber' => 'required',
+            'First_Name' => 'required',
+            'Last_Name' => 'required',
+            'cpap' => 'required',
+        ]);
+ 
+        if ($validator->fails()) {
+            return back()->with('error', 'Required Fields are missing!');
+        }
         $array = [
             'apiId' => env('apiId1'),
             'apiPassword' => env('apiPassword1'),
@@ -25,7 +37,7 @@ class FormController extends Controller
             'cancer' => env('cancer1'),    
             
         ];
-        $response = Http::post($URL, $array);
+        $response = Http::post(env('API_URL'), $array);
         if($response->successful()){
             $res = $response->object();
              return View::make('form_res', ['lead_id' => $res->lead_id]);
@@ -34,6 +46,19 @@ class FormController extends Controller
 
     }
     public function form2(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+            'phoneNumber' => 'required',
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'criteria1' => 'required',
+            'criteria2' => 'required',
+            'criteria3' => 'required',
+        ]);
+ 
+        if ($validator->fails()) {
+            return back()->with('error', 'Required Fields are missing!');
+        }
         $array = [
             'apiId' => env('apiId2'),
             'apiPassword' => env('apiPassword2'),
@@ -58,4 +83,5 @@ class FormController extends Controller
         return View::make('error', ['error' => $error]);
 
     }
+   
 }

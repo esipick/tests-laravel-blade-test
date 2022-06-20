@@ -2449,7 +2449,9 @@ body#landing-page .user-invalid {
         height: 24.25rem;
         max-width: 100%;
     }
-
+.alert {
+    color: red;
+}
     #page-block-asf2sn4f80h .section-holder-border {
         border: 0;
     }

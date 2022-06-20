@@ -22,5 +22,9 @@ Route::get('/form2', function()
 {
    return View('form_2');
 });
+Route::get('/error', function()
+{
+   return View('error');
+});
 Route::post('form1',[FormController::class, 'form1']);
 Route::post('form2',[FormController::class, 'form2']);
