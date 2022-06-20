@@ -1,0 +1,1 @@
+<h1> form submitted successfully lead id:  {{$lead_id}}</h1>
