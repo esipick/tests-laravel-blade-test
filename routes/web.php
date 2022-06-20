@@ -15,7 +15,7 @@ use App\Http\Controllers\FormController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('form_1');
 });
 
 Route::get('/form2', function()

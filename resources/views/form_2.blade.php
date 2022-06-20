@@ -87,8 +87,8 @@
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700" />
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,100italic,300italic,400italic,500,500italic,700,700italic,900,900italic" />
 
-    <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
-    <link rel="stylesheet" href="http://smedia.jaivillegas.com/stormdamagepayback/en/q/hnp/css/style.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset("css/form_2.css") }}">
 
 </head>
 
@@ -784,7 +784,7 @@
 
                     <div class="widget item-absolute  " id="element-450">
                         <div class="contents cropped item-block" data-at="image-cropp">
-                            <img class="item-content-box item-block image img-lazy" data-at="image" alt="" src="img/60351735-0-Navy-Logo.png">
+                            <img class="item-content-box item-block image img-lazy" data-at="image" alt="" src="{{ asset("images/logo2.png") }}">
                         </div>
                     </div>
 

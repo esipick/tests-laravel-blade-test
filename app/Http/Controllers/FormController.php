@@ -8,22 +8,24 @@ use Illuminate\Support\Facades\View;
 
 class FormController extends Controller
 {
+    public $error = 'error occured while posting data to server';
+
     public function form1(Request $request){
         $array = [
-            'apiId' => '52696FFFECA44C068F2EE48A2D76D323',
-            'apiPassword' => 'b8e4ff389',
-            'testMode' => '1',
-            'productId' => '197',
-            'price' => '0',
+            'apiId' => env('apiId1'),
+            'apiPassword' => env('apiPassword1'),
+            'testMode' => env('testMode'),
+            'productId' => env('productId1'),
+            'price' => env('price1'),    
             'email' => $request->input('Email'),
             'phoneNumber' => $request->input('phoneNumber'),
             'firstName' => $request->input('First_Name'),
             'lastName' => $request->input('Last_Name'),
             'cpap'  => $request->input('cpap'),
-            'cancer' => 'test',    
+            'cancer' => env('cancer1'),    
             
         ];
-        $response = Http::withoutVerifying()->post('/https://leads-inst286-client.phonexa.com/lead/', $array);
+        $response = Http::post($URL, $array);
         if($response->successful()){
             $res = $response->object();
              return View::make('form_res', ['lead_id' => $res->lead_id]);
@@ -33,11 +35,11 @@ class FormController extends Controller
     }
     public function form2(Request $request){
         $array = [
-            'apiId' => '745E04DD7B5B401E800DC89C488860C4',
-            'apiPassword' => '3c93735',
-            'testMode' => '1',
-            'productId' => '196',
-            'price' => '15',
+            'apiId' => env('apiId2'),
+            'apiPassword' => env('apiPassword2'),
+            'testMode' => env('testMode'),
+            'productId' => env('productId2'),
+            'price' => env('price2'),  
             'email' => $request->input('email'),
             'phoneNumber' => $request->input('phoneNumber'),
             'firstName' => $request->input('firstName'),
@@ -48,12 +50,12 @@ class FormController extends Controller
             'state'  => $request->input('state'),
             
         ];
-        $response = Http::withoutVerifying()->post('/https://leads-inst286-client.phonexa.com/lead/', $array);
+        $response = Http::post(env('API_URL'), $array);
         if($response->successful()){
             $res = $response->object();
              return View::make('form_res', ['lead_id' => $res->lead_id]);
         }            
-        return View::make('error', ['error' => '']);
+        return View::make('error', ['error' => $error]);
 
     }
 }

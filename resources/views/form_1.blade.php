@@ -8,7 +8,8 @@
     <title>CPAP/BiPAP Breathing Device Recall</title>
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
- <link rel="stylesheet" href="http://smedia.jaivillegas.com/empathylegal/cpap/p/hnp/css/style.css">
+    <link rel="stylesheet" href="{{ asset("css/app.css") }}">
+
 </head>
 
 <body>
@@ -21,13 +22,13 @@
                 <div class="section-inner section-fit section-relative">
                     <div class="widget item-absolute  " id="element-465">
                         <div class="contents cropped item-block" data-at="image-cropp">
-                            <img class="item-content-box item-block image " data-at="image" alt="" src="img/2596172-0-InjurySurvey.png" srcset="img/2596172-0-InjurySurvey.png 2x">
+                            <img class="item-content-box item-block image " data-at="image" alt="" src="{{ asset("images/logo.png") }}" srcset="{{ asset("images/logo.png") }}">
                         </div>
                     </div>
 
                     <div class="widget item-absolute  " id="element-404">
                         <div class="contents cropped item-block" data-at="image-cropp">
-                            <img class="item-content-box item-block image " data-at="image" alt="" src="img/2784092-0-Header.png" srcset="img/2784092-0-Header.png 2x">
+                            <img class="item-content-box item-block image " data-at="image" alt="" src="{{ asset("images/person.png") }}" srcset="{{ asset("images/person.png") }}">
                         </div>
                     </div>
 
