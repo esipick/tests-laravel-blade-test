@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Validator;
 
 class FormController extends Controller
 {
-    public $error = 'error occured while posting data to server';
+  
 
     public function form1(Request $request){
         $validator = Validator::make($request->all(), [
             'Email' => 'required',
-            'phoneNumber' => 'required',
+            'phoneNumber' => 'required|digits_between:3,12',
             'First_Name' => 'required',
             'Last_Name' => 'required',
             'cpap' => 'required',
@@ -34,21 +34,25 @@ class FormController extends Controller
             'firstName' => $request->input('First_Name'),
             'lastName' => $request->input('Last_Name'),
             'cpap'  => $request->input('cpap'),
-            'cancer' => env('cancer1'),    
+            'cancer' => env('cancer'),    
             
         ];
-        $response = Http::post(env('API_URL'), $array);
+        $response = Http::withoutVerifying()->post(env('API_URL'), $array);
         if($response->successful()){
             $res = $response->object();
-             return View::make('form_res', ['lead_id' => $res->lead_id]);
+           
+            if($res->lead_id) {
+                return back()->with('success', $res->lead_id);
+            }
+            // return back()->with('success', ['message' => 'lead created','lead_id' => $res->lead_id]);
         }            
-        return View::make('error', ['error' => '']);
+        return View::make('error', ['error' => 'error occured while posting data to server']);
 
     }
     public function form2(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required',
-            'phoneNumber' => 'required',
+            'phoneNumber' => 'required|digits_between:3,12',
             'firstName' => 'required',
             'lastName' => 'required',
             'criteria1' => 'required',
@@ -57,7 +61,7 @@ class FormController extends Controller
         ]);
  
         if ($validator->fails()) {
-            return back()->with('error', 'Required Fields are missing!');
+            return back()->with('error', 'error occured while posting data to server');
         }
         $array = [
             'apiId' => env('apiId2'),
@@ -75,12 +79,14 @@ class FormController extends Controller
             'state'  => $request->input('state'),
             
         ];
-        $response = Http::post(env('API_URL'), $array);
+        $response = Http::withoutVerifying()->post(env('API_URL'), $array);
         if($response->successful()){
             $res = $response->object();
-             return View::make('form_res', ['lead_id' => $res->lead_id]);
+            if($res->lead_id) {
+                return back()->with('success', $res->lead_id);
+            }
         }            
-        return View::make('error', ['error' => $error]);
+        return View::make('error', ['error' => 'error occured while posting data to server']);
 
     }
    

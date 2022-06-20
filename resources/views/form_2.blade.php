@@ -188,6 +188,14 @@
                                 {{ session()->get('error') }}
                             </div>
                             @endif
+                            @if(session()->has('success'))
+                            <div class="success">
+                                data submitted successfully
+                            </div>
+                            <div class="success">
+                                Lead id:  {{ session()->get('success') }} 
+                            </div>
+                            @endif
                         <form novalidate="" class="form email-form contents form-labels-inside" method="POST" data-id="element-133" data-at="form" action="/form2">
                         @csrf
                             <input id="field-d4fcc12d784ba5161f3f66bb59eac723-0" class="form-input form-input-text required  " data-at="form-text" type="text" name="firstName" data-describedby="form-validation-error-box-element-133" value="" title="First Name" placeholder="First Name"

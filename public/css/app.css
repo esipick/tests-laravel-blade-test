@@ -1478,3 +1478,6 @@ body#landing-page .user-invalid {
 .alert {
     color: red;
 }
+.success{
+    color: green;
+}

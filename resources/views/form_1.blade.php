@@ -169,6 +169,14 @@
                                 {{ session()->get('error') }}
                             </div>
                             @endif
+                            @if(session()->has('success'))
+                            <div class="success">
+                                data submitted successfully
+                            </div>
+                            <div class="success">
+                                Lead id:  {{ session()->get('success') }} 
+                            </div>
+                            @endif
                             <form
                                 novalidate
                                 class="form email-form contents form-labels-outside-top"
